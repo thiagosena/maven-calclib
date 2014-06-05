@@ -65,24 +65,34 @@
 		</dependency>
 	</dependencies>
 	
-	<reporting>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>2.12.1</version>
-          <reportSets>
-            <reportSet>
-              <reports>
-                <report>checkstyle</report>
-              </reports>
-            </reportSet>
-          </reportSets>
-        </plugin>
-      </plugins>
-    </reporting>
     
 	<build>
+		<plugins>
+	      <plugin>
+	        <!--To support checkstyle goals. For example: "mvn checkstyle:checkstyle"-->
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-checkstyle-plugin</artifactId>
+	        <configuration>
+	          <!-- <configLocation>/home/greenhorn/NetBeansProjects/greenhorn-checkstyle.xml</configLocation>-->
+	          <!-- The above conguration line works as well, but the below is prefered. -->
+	          <suppressionsLocation>src/main/resources/pcc-checkstyle-suppressions.xml</suppressionsLocation>
+	          <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+	          <configLocation>src/main/resources/greenhorn-checkstyle.xml</configLocation>
+	        </configuration>
+	      </plugin>
+	      <plugin>
+	        <!--To support pmd goals. For example: "mvn pmd:pmd" -->
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-pmd-plugin</artifactId>
+	        <version>2.7.1</version>
+	        <configuration>
+	          <targetJdk>1.7</targetJdk>
+	          <rulesets>
+	            <ruleset>src/main/resources/greenhorn-pmd.xml</ruleset>
+	          </rulesets>
+	        </configuration>
+	      </plugin>
+	    </plugins>
 		<pluginManagement>
 			<plugins>
 				<!-- Git repo is checked out into /var/lib/openshift/52d5741450044610e8000284/app-root/runtime/repo 
@@ -108,70 +118,29 @@
 				</plugin>
 				
 				<plugin>
-					<groupId>com.github.github</groupId>
-					<artifactId>site-maven-plugin</artifactId>
-					<version>0.6</version>
-					<configuration>
-						<message>Creating site for ${project.version}</message>
-						<repositoryName>maven-calclib</repositoryName>
-						<repositoryOwner>thiagosena</repositoryOwner>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>site</goal>
-							</goals>
-							<phase>site</phase>
-						</execution>
-					</executions>
-					<dependencies>
-						<dependency>
-							<groupId>org.eclipse.mylyn.github</groupId>
-							<artifactId>org.eclipse.egit.github.core</artifactId>
-							<version>2.0.3</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-
-				<plugin>
-		   			<groupId>org.apache.maven.plugins</groupId>
-		   			<artifactId>maven-checkstyle-plugin</artifactId>
-		   			<version>2.12.1</version>
-		   			<executions>
-		     			<execution>
-			       			<id>validate</id>
-			       			<phase>validate</phase>
-			       			<configuration>
-				         		<encoding>UTF-8</encoding>
-				         		<consoleOutput>true</consoleOutput>
-				         		<failsOnError>false</failsOnError>
-				        		<failOnViolation>false</failOnViolation>
-				         		<linkXRef>false</linkXRef>
-				       		</configuration>
-				       		<goals>
-				         		<goal>check</goal>
-				       		</goals>
-		     			</execution>
-		   			</executions>
-		 		</plugin>
-		  		
-		  		<plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-assembly-plugin</artifactId>
-	                <version>2.4</version>
-	                <configuration>
-	                	<outputDirectory>src/main/resources</outputDirectory>
-	                    <archive>
-	                        <manifest>
-	                            <addClasspath>true</addClasspath>
-	                            <classpathPrefix>lib/</classpathPrefix>
-	                        </manifest>
-	                    </archive>
-	                    <descriptors>
-	                        <descriptor>src/main/resources/assembly.xml</descriptor>
-	                    </descriptors>
-	                </configuration>
+		          <groupId>org.apache.maven.plugins</groupId>
+		          <artifactId>maven-checkstyle-plugin</artifactId>
+		          <version>2.9.1</version>
 		        </plugin>
+
+		  		<plugin>
+				  <artifactId>maven-assembly-plugin</artifactId>
+				  <version>2.2-beta-5</version>
+				  <configuration>
+				    <descriptors>
+				      <descriptor>src/main/resources/assembly.xml</descriptor>
+				    </descriptors>
+				  </configuration>
+				  <executions>
+				    <execution>
+				      <id>make-assembly</id> <!-- this is used for inheritance merges -->
+				      <phase>package</phase> <!-- append to the packaging phase. -->
+				      <goals>
+				        <goal>single</goal> <!-- goals == mojos -->
+				      </goals>
+				    </execution>
+				  </executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		

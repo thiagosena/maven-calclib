@@ -4,6 +4,9 @@ Biblioteca com as operações básicas da matemática (soma, subtração, multip
 ##Marven
 Com o uso do marven (build automatizado), o gerente de projeto não precisa se preocupar com bibliotecas (vários .jar, fazendo com que o projeto fique muito grande), o próprio marven se encarrega de procurar as bibliotecas para você.
 
+##Jenkins
+[Clique aqui](https://jenkins-thiagosena.rhcloud.com/job/marvin-calclib-build/) para abrir a aplicação do jenkins online.
+
 ##OpenShift
 The OpenShift `jbossews` cartridge documentation can be found at:
 

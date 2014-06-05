@@ -1,4 +1,4 @@
-#Calc-lib
+#Calc-lib [ ![Codeship Status for thiagosena/maven-calclib](https://www.codeship.io/projects/96a2b2a0-ce9a-0131-4d5d-1ac3e6e153a0/status?branch=master)](https://www.codeship.io/projects/22926)
 Biblioteca com as operações básicas da matemática (soma, subtração, multiplicação e divisão).
 
 ##Marven

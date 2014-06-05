@@ -39,6 +39,12 @@
 			<artifactId>jersey-servlet</artifactId>
 			<version>1.17.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 
 		<!-- Gson: Java to Json conversion -->
 		<dependency>
@@ -48,6 +54,23 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
+	
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.0.1</version>
+			</plugin>
+		</plugins>
+	</reporting>
 
 	<build>
 		<pluginManagement>
@@ -73,15 +96,31 @@
 						<skip>true</skip>
 					</configuration>
 				</plugin>
+				
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-pmd-plugin</artifactId>
-					<version>3.1</version>
+					<groupId>com.github.github</groupId>
+					<artifactId>site-maven-plugin</artifactId>
+					<version>0.6</version>
 					<configuration>
-						<linkXref>false</linkXref>
-						<sourceEncoding>UTF-8</sourceEncoding>
-						<targetJdk>1.7</targetJdk>
+						<message>Creating site for ${project.version}</message>
+						<repositoryName>maven-calclib</repositoryName>
+						<repositoryOwner>thiagosena</repositoryOwner>
 					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>site</goal>
+							</goals>
+							<phase>site</phase>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>org.eclipse.mylyn.github</groupId>
+							<artifactId>org.eclipse.egit.github.core</artifactId>
+							<version>2.0.3</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 
 			</plugins>

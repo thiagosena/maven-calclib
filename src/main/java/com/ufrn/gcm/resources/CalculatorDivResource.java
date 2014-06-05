@@ -5,12 +5,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 
 
 @Path("/div")
 public class CalculatorDivResource {
-
+	
+	public static Logger log4j = Logger.getLogger("test");
+	
 	@GET
 	@Produces("application/json")
 	public String div(@QueryParam("valor1") float valor1, 

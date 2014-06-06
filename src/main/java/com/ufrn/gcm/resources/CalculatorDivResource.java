@@ -19,7 +19,7 @@ public class CalculatorDivResource {
 		if(valor2 == 0)
 			throw new Exception("Nao pode efetuar uma divisao por zero!");
 		
-		return new Gson().toJson(valor1/valor2);
+		return new Gson().toJson(valor1+valor2);
 	}
 	
 }

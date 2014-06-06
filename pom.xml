@@ -99,6 +99,7 @@
 				<configuration>
 					<targetJdk>1.7</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
+					<failOnViolation>false</failOnViolation>
 					<verbose>true</verbose>
 					<rulesets>
 						<ruleset>src/main/resources/greenhorn-pmd.xml</ruleset>

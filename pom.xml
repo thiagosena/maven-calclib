@@ -97,13 +97,20 @@
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>3.0.1</version>
 				<configuration>
+					<targetJdk>1.7</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<verbose>true</verbose>
-					<includeTests>true</includeTests>
 					<rulesets>
 						<ruleset>src/main/resources/greenhorn-pmd.xml</ruleset>
 					</rulesets>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>

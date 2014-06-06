@@ -29,12 +29,13 @@ public class CalculatorTest {
 		logger.info("testSum() 10 - 5: " + test.minus(10, 5));
 		assertEquals("5.0", test.minus(10, 5));
 	}
-
+	/*
 	@Test
 	public void testDiv() throws Exception {
 		CalculatorDivResource test = new CalculatorDivResource();
 		logger.info("testSum() 10 / 5: " + test.div(10, 5));
 		assertEquals("2.0", test.div(10, 5));
 	}
+	*/
 
 }
